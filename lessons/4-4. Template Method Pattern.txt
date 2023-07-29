@@ -1,0 +1,39 @@
+Template Method Pattern: This pattern defines the skeleton of an algorithm in a method, 
+deferring some steps to subclasses. It lets subclasses redefine certain steps of an algorithm 
+without changing the algorithm's structure.
+
+    abstract class Game {
+        abstract void initialize();
+        abstract void startPlay();
+        abstract void endPlay();
+
+        // Template method
+        public final void play() {
+            initialize();
+            startPlay();
+            endPlay();
+        }
+    }
+
+    class Cricket extends Game {
+        void initialize() { /* ... */ }
+        void startPlay() { /* ... */ }
+        void endPlay() { /* ... */ }
+    }
+
+    class Football extends Game {
+        void initialize() { /* ... */ }
+        void startPlay() { /* ... */ }
+        void endPlay() { /* ... */ }
+    }
+
+    // Usage:
+    Game game = new Cricket();
+    game.play();
+
+    game = new Football();
+    game.play();
+
+In this example, Game is an abstract class and provides a method play() that defines the 
+algorithm skeleton. The algorithm skeleton calls some methods that must be implemented by 
+subclasses (Cricket, Football), which define how to execute these steps.

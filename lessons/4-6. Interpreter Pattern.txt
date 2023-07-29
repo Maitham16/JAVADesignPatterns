@@ -1,0 +1,191 @@
+Interpreter Pattern: This pattern is used to defines a grammatical representation for a 
+language and provides an interpreter to deal with this grammar.
+
+    interface Expression {
+        boolean interpret(String context);
+    }
+
+    class TerminalExpression implements Expression {
+        private String data;
+
+        public TerminalExpression(String data) {
+            this.data = data;
+        }
+
+        @Override
+        public boolean interpret(String context) {
+            if (context.contains(data)) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    class OrExpression implements Expression {
+        private Expression expr1;
+        private Expression expr2;
+
+        public OrExpression(Expression expr1, Expression expr2) {
+            this.expr1 = expr1;
+            this.expr2 = expr2;
+        }
+
+        @Override
+        public boolean interpret(String context) {
+            return expr1.interpret(context) || expr2.interpret(context);
+        }
+    }
+
+    // Usage:
+    Expression isJohn = new TerminalExpression("John");
+    Expression isHenry = new TerminalExpression("Henry");
+    Expression isJohnOrHenry = new OrExpression(isJohn, isHenry);
+
+    System.out.println(isJohnOrHenry.interpret("John")); // Prints: true
+    System.out.println(isJohnOrHenry.interpret("Henry")); // Prints: true
+    System.out.println(isJohnOrHenry.interpret("Mike")); // Prints: false
+
+It seems like you have studied a broad range of design patterns already. Excellent!
+
+The remaining category of patterns to discuss are the Behavioral design patterns:
+
+    Template Method Pattern: This pattern defines the skeleton of an algorithm in a method, deferring some steps to subclasses. It lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.
+
+java
+
+abstract class Game {
+    abstract void initialize();
+    abstract void startPlay();
+    abstract void endPlay();
+
+    // Template method
+    public final void play() {
+        initialize();
+        startPlay();
+        endPlay();
+    }
+}
+
+class Cricket extends Game {
+    void initialize() { /* ... */ }
+    void startPlay() { /* ... */ }
+    void endPlay() { /* ... */ }
+}
+
+class Football extends Game {
+    void initialize() { /* ... */ }
+    void startPlay() { /* ... */ }
+    void endPlay() { /* ... */ }
+}
+
+// Usage:
+Game game = new Cricket();
+game.play();
+
+game = new Football();
+game.play();
+
+In this example, Game is an abstract class and provides a method play() that defines the algorithm skeleton. The algorithm skeleton calls some methods that must be implemented by subclasses (Cricket, Football), which define how to execute these steps.
+
+    Visitor Pattern: This pattern is used when we have to perform an operation on a group of similar kinds of Objects. It provides a way to separate algorithms from the objects on which they operate.
+
+java
+
+interface Visitor {
+    void visit(ElementA element);
+    void visit(ElementB element);
+}
+
+interface Element {
+    void accept(Visitor visitor);
+}
+
+class ElementA implements Element {
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public void operationA() { /* ... */ }
+}
+
+class ElementB implements Element {
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public void operationB() { /* ... */ }
+}
+
+class ConcreteVisitor implements Visitor {
+    public void visit(ElementA element) {
+        element.operationA();
+    }
+
+    public void visit(ElementB element) {
+        element.operationB();
+    }
+}
+
+// Usage:
+Element[] elements = { new ElementA(), new ElementB() };
+Visitor visitor = new ConcreteVisitor();
+
+for (Element element : elements) {
+    element.accept(visitor);
+}
+
+In this example, Visitor declares a visit operation for each class of ConcreteElement in the object structure, ConcreteVisitor implements each operation declared by Visitor, Element defines an accept operation that takes a visitor as an argument, ConcreteElement implements an accept operation that takes a visitor as an argument.
+
+    Interpreter Pattern: This pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.
+
+java
+
+interface Expression {
+    boolean interpret(String context);
+}
+
+class TerminalExpression implements Expression {
+    private String data;
+
+    public TerminalExpression(String data) {
+        this.data = data;
+    }
+
+    @Override
+    public boolean interpret(String context) {
+        if (context.contains(data)) {
+            return true;
+        }
+        return false;
+    }
+}
+
+class OrExpression implements Expression {
+    private Expression expr1;
+    private Expression expr2;
+
+    public OrExpression(Expression expr1, Expression expr2) {
+        this.expr1 = expr1;
+        this.expr2 = expr2;
+    }
+
+    @Override
+    public boolean interpret(String context) {
+        return expr1.interpret(context) || expr2.interpret(context);
+    }
+}
+
+// Usage:
+Expression isJohn = new TerminalExpression("John");
+Expression isHenry = new TerminalExpression("Henry");
+Expression isJohnOrHenry = new OrExpression(isJohn, isHenry);
+
+System.out.println(isJohnOrHenry.interpret("John")); // Prints: true
+System.out.println(isJohnOrHenry.interpret("Henry")); // Prints: true
+System.out.println(isJohnOrHenry.interpret("Mike")); // Prints: false
+
+In this example, Expression defines an interpret operation associated with grammar symbols, 
+TerminalExpression implements an interpret operation associated with terminal symbols in the 
+grammar, NonterminalExpression (like OrExpression in this example) for every rule 
+R ::= R1 R2 ... Rn in the grammar, NonterminalExpression implements an interpret operation 
+for nonterminal symbols in the grammar.

@@ -1,0 +1,41 @@
+Abstract Factory Pattern
+The Abstract Factory pattern adds a level of abstraction over the Factory pattern. 
+It has a factory of factories. This pattern falls under the creational design patterns. 
+It provides an interface for creating families of related or dependent objects without 
+specifying their concrete classes.
+
+    interface Button {
+        void paint();
+    }
+
+    class WinButton implements Button {
+        public void paint() {
+            System.out.println("Windows Button");
+        }
+    }
+
+    class MacOSButton implements Button {
+        public void paint() {
+            System.out.println("MacOS Button");
+        }
+    }
+
+    interface GUIFactory {
+        Button createButton();
+    }
+
+    class WinFactory implements GUIFactory {
+        public Button createButton() {
+            return new WinButton();
+        }
+    }
+
+    class MacOSFactory implements GUIFactory {
+        public Button createButton() {
+            return new MacOSButton();
+        }
+    }
+
+In the GUIFactory interface, we have a createButton method that creates and returns a button. 
+We have two concrete classes WinFactory and MacOSFactory that implement GUIFactory and 
+provide their own implementations to the createButton method.

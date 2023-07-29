@@ -1,0 +1,44 @@
+Builder Pattern
+The Builder pattern is a design pattern that allows for the step-by-step creation of complex 
+objects using the correct sequence of actions. The construction is controlled by a director 
+object that only needs to know the type of object it is to create.
+
+    class Car {
+        private final String make;  // required
+        private final String model; // required
+        private final int year;     // optional
+
+        static class CarBuilder {
+            private String nestedMake; 
+            private String nestedModel; 
+            private int nestedYear; 
+
+            CarBuilder(String make, String model) {
+                this.nestedMake = make;
+                this.nestedModel = model;
+            }
+
+            CarBuilder year(int year) {
+                this.nestedYear = year;
+                return this;
+            }
+
+            Car createCar() {
+                return new Car(nestedMake, nestedModel, nestedYear);
+            }
+        }
+
+        private Car(String make, String model, int year) {
+            this.make = make;
+            this.model = model;
+            this.year = year;
+        }
+    }
+
+    public static void main(String[] args) {
+        Car car = new Car.CarBuilder("Ford", "Focus").year(2010).createCar();
+    }
+
+The CarBuilder is used to build Car instances. It makes possible to provide only the required 
+parameters and then you can optionally call the methods for the parameters that are optional.
+

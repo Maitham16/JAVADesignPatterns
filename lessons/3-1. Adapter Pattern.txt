@@ -1,0 +1,39 @@
+The Adapter pattern works as a bridge between two incompatible interfaces. This pattern 
+involves a single class called adapter which is responsible for communication between two 
+independent or incompatible interfaces. 
+
+Here's an example:
+
+    // Old interface
+    class OldPrinter {
+        public void print(String text){
+            System.out.println("Printing: " + text);
+        }
+    }
+
+    // New interface
+    interface NewPrinter {
+        void print(String text);
+    }
+
+    // Adapter
+    class PrinterAdapter implements NewPrinter {
+        OldPrinter oldPrinter;
+
+        PrinterAdapter(OldPrinter oldPrinter){
+            this.oldPrinter = oldPrinter;
+        }
+
+        @Override
+        public void print(String text) {
+            oldPrinter.print(text);
+        }
+    }
+
+    // Client
+    class Client {
+        public static void main(String[] args) {
+            NewPrinter newPrinter = new PrinterAdapter(new OldPrinter());
+            newPrinter.print("Adapter pattern example");
+        }
+    }

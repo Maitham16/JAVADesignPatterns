@@ -1,0 +1,61 @@
+Visitor Pattern: This pattern is used when we have to perform an operation on a group of 
+similar kinds of Objects. It provides a way to separate algorithms from the objects on which
+they operate.
+
+    interface Visitor {
+        void visit(ElementA element);
+        void visit(ElementB element);
+    }
+
+    interface Element {
+        void accept(Visitor visitor);
+    }
+
+    class ElementA implements Element {
+        public void accept(Visitor visitor) {
+            visitor.visit(this);
+        }
+
+        public void operationA() { /* ... */ }
+    }
+
+    class ElementB implements Element {
+        public void accept(Visitor visitor) {
+            visitor.visit(this);
+        }
+
+        public void operationB() { /* ... */ }
+    }
+
+    class ConcreteVisitor implements Visitor {
+        public void visit(ElementA element) {
+            element.operationA();
+        }
+
+        public void visit(ElementB element) {
+            element.operationB();
+        }
+    }
+
+    // Usage:
+    Element[] elements = { new ElementA(), new ElementB() };
+    Visitor visitor = new ConcreteVisitor();
+
+    for (Element element : elements) {
+        element.accept(visitor);
+    }
+
+    // Output:
+    // ElementA operationA
+    // ElementB operationB
+
+    In this example, Visitor declares a visit operation for each class of ConcreteElement in 
+    the object structure, ConcreteVisitor implements each operation declared by Visitor, 
+    Element defines an accept operation that takes a visitor as an argument, ConcreteElement 
+    implements an accept operation that takes a visitor as an argument.
+
+
+The visitor pattern is used when you have to perform the same action on many objects of 
+different types. The visitor pattern is used to add a new feature to an existing class
+hierarchy without changing the existing code. The new logic resides in a separate object
+called the visitor.

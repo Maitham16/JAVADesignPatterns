@@ -1,0 +1,45 @@
+Design patterns are well-proven solutions to common problems in software design. 
+Each pattern is like a blueprint that you can customize to solve a particular design 
+problem in your code.
+
+There are three types of design patterns in Java:
+
+    Creational Design Patterns: These patterns are used to construct objects such that 
+                                they can be decoupled from their implementing system. 
+    The creational design patterns include:
+        Singleton Pattern
+        Factory Pattern
+        Abstract Factory Pattern
+        Builder Pattern
+        Prototype Pattern
+
+    Structural Design Patterns: These patterns deal with object composition or class 
+                                composition. This means these patterns help to ensure 
+                                that when one part of a system changes, the entire 
+                                structure of the system doesn't need to change along with it. 
+    The structural design patterns include:
+        Adapter Pattern
+        Composite Pattern
+        Proxy Pattern
+        Flyweight Pattern
+        Facade Pattern
+        Bridge Pattern
+        Decorator Pattern
+
+    Behavioral Design Patterns: These patterns are specifically concerned with communication 
+                                between objects. 
+    The behavioral design patterns include:
+        Template Method Pattern
+        Mediator Pattern
+        Chain of Responsibility Pattern
+        Observer Pattern
+        Strategy Pattern
+        Command Pattern
+        State Pattern
+        Visitor Pattern
+        Interpreter Pattern
+        Iterator Pattern
+        Memento Pattern
+
+Each pattern has a specific use case, and understanding when to use each one can make your 
+code cleaner, easier to understand, and easier to maintain.

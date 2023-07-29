@@ -1,0 +1,22 @@
+Singleton Pattern:
+The Singleton Pattern restricts the instantiation of a class and ensures that only one 
+instance of the class exists in the Java virtual machine. It is used where only a single 
+instance of a class is required to control actions.
+
+Singleton pattern is used for logging, drivers objects, caching and thread pool.
+
+    public class Singleton {
+    private static Singleton instance;
+
+    // making the constructor private so it's not accessible outside
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if(instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+    }
+
+

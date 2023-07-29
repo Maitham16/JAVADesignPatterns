@@ -1,0 +1,42 @@
+Factory Pattern:
+Factory pattern is one of the most used design patterns in Java. This type of design pattern 
+comes under creational pattern as this pattern provides one of the best ways to create an 
+object.
+
+In Factory pattern, we create object without exposing the creation logic to the client and 
+refer to newly created object using a common interface.
+
+    interface Shape {
+    void draw();
+    }
+
+    class Rectangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Inside Rectangle::draw() method.");
+    }
+    }
+
+    class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Inside Circle::draw() method.");
+    }
+    }
+
+    class ShapeFactory {
+    public Shape getShape(String shapeType) {
+        if(shapeType == null) {
+            return null;
+        }		
+        if(shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle();
+        } else if(shapeType.equalsIgnoreCase("RECTANGLE")) {
+            return new Rectangle();
+        }
+        return null;
+    }
+    }
+
+In the ShapeFactory class, we have a getShape method that creates and returns shapes based on 
+the input string.

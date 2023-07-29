@@ -1,0 +1,50 @@
+The State pattern is used when an Object changes its behavior based on its internal state.
+
+// State interface
+interface State {
+    void doAction();
+}
+
+class StartState implements State {
+    public void doAction() {
+        System.out.println("Player is in start state");
+    }
+}
+
+class StopState implements State {
+    public void doAction() {
+        System.out.println("Player is in stop state");
+    }
+}
+
+// Context
+class Player {
+    private State state;
+
+    public void setState(State state){
+        this.state = state;   
+    }
+
+    public void doAction(){
+        this.state.doAction();
+    }
+}
+
+// Demo
+public class StatePatternDemo {
+    public static void main(String[] args) {
+        Player player = new Player();
+        player.setState(new StartState());
+        player.doAction();
+
+        player.setState(new StopState());
+        player.doAction();
+    }
+}
+
+// Output
+Player is in start state
+Player is in stop state
+
+Here, State is a state interface, StartState and StopState are concrete states, 
+and Player is a context.
